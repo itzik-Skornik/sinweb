@@ -1,0 +1,15 @@
+.clock {
+    display:inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    background-color: #202020;
+  }
+  
+  .time {
+    font-size: 10rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  

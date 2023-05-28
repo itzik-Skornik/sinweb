@@ -4,7 +4,7 @@ const connection = require("../mySql");
 const router = express.Router();
 
 router.post("/signup", function (req, res) {
-  const { email, password, LastName, firstName, address, number, number1, number2 } = req.body;
+  const { email, password, LastName, firstName, address, number, number1, number2,isChecked } = req.body;
 
 
 
@@ -25,8 +25,8 @@ router.post("/signup", function (req, res) {
       console.log(req.body);
 
       connection.query(
-        "INSERT INTO `test`.`users_new`(`email`, `password`, `LastName`,`firstName`,`address`,`number`,`number1`,`number2` ) VALUES ( ?,?,?,?,?,?,?,?)",
-        [email, password, LastName, firstName, address, number, number1, number2],
+        "INSERT INTO `test`.`users_new`(`email`, `password`, `LastName`,`firstName`,`address`,`number`,`number1`,`number2`,`checkbox` ) VALUES ( ?,?,?,?,?,?,?,?,?)",
+        [email, password, LastName, firstName, address, number, number1, number2,isChecked],
         (err, r, f) => {
           if (err) {
             console.log(err);

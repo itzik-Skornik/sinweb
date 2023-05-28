@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Route, Router, Routes, Link, Navigate ,useNavigate} from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes, Link, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import Navbars from './components/Navbars';
 import Home from './components/Home';
@@ -35,7 +35,7 @@ function App() {
     localStorage.clear()
     setIsLoggedIn(false);
     setUser(null)
-    window.location.href="/"
+    window.location.href = "/"
   };
 
   const handleLogin = (res, poprs, email) => {
@@ -89,7 +89,9 @@ function App() {
         <Route path="/yomcol" element={<Yomcol />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/Messages" element={<Messages />} />
-            <Route path="/Updates" element={<Updates />} />
+        <Route path="/Updates" element={<Updates />} >
+          <Route path="ab" element={<h2>ghjkfghj</h2>} />
+        </Route >
         <Route path="/Donations" element={<Donations user={user} />} />
         <Route path="/newCode" element={<StickyFooter email={emailInpotLogin} />} />
       </Routes>

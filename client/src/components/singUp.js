@@ -20,10 +20,15 @@ const theme = createTheme();
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = React.useState(false);
+  const handleChange = (event) => {
+    console.log(isChecked);
+    setIsChecked(event.target.checked);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
+   
     let body = JSON.stringify({
       email: data.get('email'),
       password: data.get('password'),
@@ -33,8 +38,11 @@ export default function SignUp() {
       number: data.get('number'),
       number1: data.get('number1'),
       number2: data.get('number2'),
+      Business: data.get('Business'),
+      isChecked
     });
 
+    console.log(body);
     let requestOptions = {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -169,10 +177,23 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="Business"
+                  label="עסק"
+                  name="Business"
+                  autoComplete="Business"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="אני רוצה לקבל עידכונים במייל על עידכונים בקהילה."
+                  onChange={handleChange}
+                  id="chacked"
                 />
+                
               </Grid>
             </Grid>
             <Button

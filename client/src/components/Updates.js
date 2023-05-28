@@ -5,14 +5,14 @@ import { Button } from '@mui/material';
 
 function Updates() {
     return (
-        <Grid container justifyContent="center">
-            <Grid item>
-                <Button text="כפתור 1" onClick={() => console.log('Clicked Button 1')} />
-            </Grid>
-            <Grid item>
-                <Button text="כפתור 2" onClick={() => console.log('Clicked Button 2')} />
-            </Grid>
-        </Grid>
+        <Grid container justifyContent="center" spacing={2}>
+      <Grid item>
+        <Button variant="contained" color="primary">כפתור 1</Button>
+      </Grid>
+      <Grid item>
+        <Button variant="contained" color="secondary">כפתור 2</Button>
+      </Grid>
+    </Grid>
     )
 }
 

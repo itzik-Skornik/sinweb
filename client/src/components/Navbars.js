@@ -77,7 +77,7 @@ function Navbars({ isLoggedIn, logOut }) {
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#ffffb3", height: "100px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
         <div>
-          <Navbar.Brand href="/" >{<img src="logo.jpg" width={'150px'} height={'100px'} />}</Navbar.Brand>
+          <Navbar.Brand href="/" >{<img src="/logo.jpg" width={'150px'} height={'100px'} />}</Navbar.Brand>
 
         </div>
         <div>

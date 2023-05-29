@@ -51,6 +51,9 @@ export default function SignIn({ handleLogin }) {
         console.log(data);
         handleLogin(true,data.body, email);
         alert("הכניסה בוצעה בהצלחה")
+        if (data.body.mnager) {
+          navigate("/manger")
+        }
         navigate("/profile ")
 
       })

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Contacts from './Contacts';
 import Messages from './Messages';
+import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 
-function Profile({ isLoggedIn, logIn, logOut }) {
-
+function Profile({ user }) {
+console.log(user);
   const [data, setData] = useState([])
-  console.log(data);
+ 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    
     fetch("http://localhost:5000/auth/Profile", {
       headers: {
         "Content-Type": "application/json",
@@ -16,10 +20,10 @@ function Profile({ isLoggedIn, logIn, logOut }) {
     })
       .then(response => response.json())
       .then(result => {
-        setData(result.body);
         console.log(result.body);
+        setData(result.body);
         console.log(data);
-        
+
       })
       .catch(error => alert('error', error));
   }, []);
@@ -28,29 +32,44 @@ function Profile({ isLoggedIn, logIn, logOut }) {
   const renderComponent = () => {
     switch (key) {
       case 1:
-        return  <Contacts data={data} />;
+        return <Contacts data={data} />;
       case 2:
         return <Messages />;
       case 3:
-        return ;
+        return;
       default:
         return null;
     }
   };
   // console.log(JSON.parse(storedData));
   return (
-    <div>
-    <button onClick={() => setKey(1)}> אנשי קשר</button>
-    <button onClick={() => setKey(2)}>קומפוננטה 2</button>
-    <button onClick={() => setKey(3)}>קומפוננטה 3</button>
+    <div style={{ backgroundColor: 'lightblue', display: 'flex' }}>
+      <div style={{ width: '200px' }}>
+        <h3 style={{ textAlign: 'center' }}>שלום לך {user.firstName}</h3>
+        <List>
+          <ListItem button onClick={() => setKey(1)}>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            <ListItemText primary="אנשי קשר" />
+          </ListItem>
+          <ListItem button onClick={() => setKey(2)}>
+            <ListItemIcon>
+              <LocalPostOfficeIcon />
+            </ListItemIcon>
+            <ListItemText primary=" הודעה לגבאים" />
+          </ListItem>
+        </List>
+      </div>
+      <div style={{ flex: 1 }}>
+        {renderComponent()}
+      </div>
+    </div>
 
-    {renderComponent()}
-  </div>
- 
 
- 
 
-   )
+
+  )
 
 }
 export default Profile

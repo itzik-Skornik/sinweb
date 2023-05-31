@@ -16,9 +16,11 @@ const SignUpRouter = require("./auth/signup");
 const profileRouter = require("./auth/Profile");
 const newCodeRouter = require("./auth/newCode");
 const newMessagesRouter = require("./auth/Messages");
+const Community_list_Router = require("./auth/Community_list");
 app.use("/auth", LoginRouter)
 app.use("/auth", SignUpRouter)
 app.use("/auth", newCodeRouter)
 app.use("/auth", newMessagesRouter)
+app.use("/auth", Community_list_Router)
 app.use("/auth", checkout, profileRouter)
 app.listen(5000);

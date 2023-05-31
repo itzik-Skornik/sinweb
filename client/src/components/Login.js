@@ -27,9 +27,9 @@ export default function SignIn({ handleLogin }) {
 
     const data = new FormData(event.currentTarget);
     setEmail(data.get('email'))
-  
+
     let body = JSON.stringify({
-      email:data.get('email'),
+      email: data.get('email'),
       password: data.get('password'),
     });
 
@@ -49,13 +49,15 @@ export default function SignIn({ handleLogin }) {
         localStorage.setItem("serverData", JSON.stringify(data.body));
         localStorage.setItem("token", data.token);
         console.log(data);
-        handleLogin(true,data.body, email);
+        handleLogin(true, data.body, email);
         alert("הכניסה בוצעה בהצלחה")
-        if (data.body.mnager) {
+        if (data.body.mnager == "1") {
           console.log(data.body.mnager);
           navigate("/manger")
         }
-        navigate("/profile ")
+        else {
+          navigate("/profile ")
+        }
 
       })
 
@@ -106,7 +108,7 @@ export default function SignIn({ handleLogin }) {
               id="password"
               autoComplete="current-password"
             />
-           
+
             <Button
               type="submit"
               fullWidth

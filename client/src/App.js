@@ -18,6 +18,8 @@ import Donations from './components/Donations';
 import Contact from './components/contact';
 import Messages from './components/Messages';
 import Updates from './components/Updates';
+import Manger from './components/manger';
+import Community_list from './components/Community_list';
 
 
 function App() {
@@ -72,7 +74,7 @@ function App() {
   return (
     <BrowserRouter>
 
-      <Navbars isLoggedIn={isLoggedIn} logOut={handleLogout} />
+      <Navbars isLoggedIn={isLoggedIn} logOut={handleLogout} user={user} />
 
       <Routes>
 
@@ -81,13 +83,15 @@ function App() {
         <Route path="/login" element={<SignIn handleLogin={handleLogin} />} />
         <Route path="/singUp" element={<SingUp />} />
         <Route path="/profile" element={<Protected isLoggedIn={isLoggedIn}>
-          <Profile />
+          <Profile user={user}/>
         </Protected>} />
         <Route path="/about" element={<About />} />
         <Route path="/carousel" element={< CarouselFadeExample />} />
         <Route path="/tabla" element={< Tabla />} />
         <Route path="/yomcol" element={<Yomcol />} />
         <Route path="/contact" element={<Contact />} />
+        
+        <Route path="/Manger" element={<Manger user={user} />}/>
         <Route path="/Messages" element={<Messages />} />
         <Route path="/Updates" element={<Updates />} >
           <Route path="ab" element={<h2>ghjkfghj</h2>} />

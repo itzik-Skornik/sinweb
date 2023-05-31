@@ -66,17 +66,17 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import React from 'react'
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-function Navbars({ isLoggedIn, logOut }) {
+import Container from 'react-bootstrap/Container';
+function Navbars({ isLoggedIn, logOut,user }) {
   const navigate = useNavigate();
   return (
-  
+
     // <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#ffffb3", height: "100px" }}>
     //   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
     //     <div>
@@ -117,49 +117,101 @@ function Navbars({ isLoggedIn, logOut }) {
 
     //   </div>
     // </div>
+    <Navbar bg="light" expand="lg" sticky="top">
+      <Container style={{ backgroundColor: "#ffffb3" }}>
+        <Navbar.Brand href="/" >{<img src="logo.jpg" width={'100px'} height={'50px'} />}</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Link class="nav-link" to="/">דף הבית</Link>
+            <Link class="nav-link" to="/About">אודות</Link>
+            <NavDropdown title="גלריית תמונות" id="basic-nav-dropdown">
+              <Link class="nav-link" to="#action/3.1">הבית הכנסת</Link>
+              <Link class="nav-link" to="#action/3.2">שמחת בית השואבה</Link>
+              <Link class="nav-link" to="/carousel">ערב התאספות בבית המדרש</Link>
+            </NavDropdown>
 
-
-    <div >
-      <Navbar bg="light" expand="lg" >
-        <Container style={{ display:"flex",justifyContent: "center", alignItems: "center", backgroundColor: "#ffffb3"}}>
-          <Navbar.Brand href="/" >{<img src="logo.jpg" width={'100px'} height={'50px'} />}</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav"  />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Link class="nav-link" to="/">דף הבית</Link>
-              <Link class="nav-link" to="/About">אודות</Link>
-              <NavDropdown title="גלריית תמונות" id="basic-nav-dropdown">
-                <Link class="nav-link" to="#action/3.1">הבית הכנסת</Link>
-                <Link class="nav-link" to="#action/3.2">שמחת בית השואבה</Link>
-                <Link class="nav-link" to="/carousel">ערב התאספות בבית המדרש</Link>
-              </NavDropdown>
-
-              <Link class="nav-link" to="/About">הודעות ועידכונים</Link>
-              <Link class="nav-link" to="/Donations">תרומות ונדבות </Link>
-              <Link class="nav-link" to="/Contact">יצירת קשר</Link>
-              {/* <Link class="nav-link" to="/singup">הרשמה</Link> */}
-              <NavDropdown title="זמני תפילות" id="basic-nav-dropdown">
-                <Link class="nav-link" to="/yomcol">זמני תפילות חול</Link>
-                <Link class="nav-link" to="/tabla">זמני תפילות שבתות ומעודים</Link>
-              </NavDropdown>
-              {isLoggedIn && <Nav.Link onClick={() => logOut(false)}>יציאה</Nav.Link>}
-                    </Nav>
-                  <div>
-       {isLoggedIn ? (
+            <Link class="nav-link" to="/Updates">שמחות ועידכונים</Link>
+            <Link class="nav-link" to="/Donations">תרומות ונדבות </Link>
+            <Link class="nav-link" to="/Contact">יצירת קשר</Link>
+            {/* <Link class="nav-link" to="/singup">הרשמה</Link> */}
+            <NavDropdown title="זמני תפילות" id="basic-nav-dropdown">
+              <Link class="nav-link" to="/yomcol">זמני תפילות חול</Link>
+              <Link class="nav-link" to="/tabla">זמני תפילות שבתות ומעודים</Link>
+            </NavDropdown>
+            {isLoggedIn && <Nav.Link onClick={() => logOut(false)}>יציאה</Nav.Link>}
+          </Nav>
+          {isLoggedIn ? (
+  user.manger ? (
+    <Link class="nav-link" to="/manger">
+      <AccountCircleIcon sx={{ fontSize: 40 }} />
+    </Link>
+  ) : (
+    <Link class="nav-link" to="/Profile">
+      <AccountCircleIcon sx={{ fontSize: 40 }} />
+    </Link>
+  )
+) : (
+  <Link class="nav-link" to="/login">
+    <AccountCircleIcon sx={{ fontSize: 40 }} />
+  </Link>
+)}
+          {/* {isLoggedIn ? (
             <Link class="nav-link" to="/Profile">
-             <AccountCircleIcon sx={{ fontSize: 40 }} />
-             </Link>
-           ) : (
+              <AccountCircleIcon sx={{ fontSize: 40 }} />
+            </Link>
+          ) : (
             <Link class="nav-link" to="/login">
-               <AccountCircleIcon sx={{ fontSize: 40 }} />
-             </Link>
-           )}
-         </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <hr />
-    </div>
+              <AccountCircleIcon sx={{ fontSize: 40 }} />
+            </Link>
+          )} */}
+
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+
+
+    // <div >
+    //   <Navbar bg="light" expand="lg" >
+    //     <Container style={{  backgroundColor: "#ffffb3"}}>
+    //       <Navbar.Brand href="/" >{<img src="logo.jpg" width={'100px'} height={'50px'} />}</Navbar.Brand>
+    //       <Navbar.Toggle aria-controls="basic-navbar-nav"  />
+    //       <Navbar.Collapse id="basic-navbar-nav">
+    //         <Nav className="me-auto">
+    //           <Link class="nav-link" to="/">דף הבית</Link>
+    //           <Link class="nav-link" to="/About">אודות</Link>
+    //           <NavDropdown title="גלריית תמונות" id="basic-nav-dropdown">
+    //             <Link class="nav-link" to="#action/3.1">הבית הכנסת</Link>
+    //             <Link class="nav-link" to="#action/3.2">שמחת בית השואבה</Link>
+    //             <Link class="nav-link" to="/carousel">ערב התאספות בבית המדרש</Link>
+    //           </NavDropdown>
+
+    //           <Link class="nav-link" to="/About">הודעות ועידכונים</Link>
+    //           <Link class="nav-link" to="/Donations">תרומות ונדבות </Link>
+    //           <Link class="nav-link" to="/Contact">יצירת קשר</Link>
+    //           {/* <Link class="nav-link" to="/singup">הרשמה</Link> */}
+    //           <NavDropdown title="זמני תפילות" id="basic-nav-dropdown">
+    //             <Link class="nav-link" to="/yomcol">זמני תפילות חול</Link>
+    //             <Link class="nav-link" to="/tabla">זמני תפילות שבתות ומעודים</Link>
+    //           </NavDropdown>
+    //           {isLoggedIn && <Nav.Link onClick={() => logOut(false)}>יציאה</Nav.Link>}
+    //                 </Nav>
+    //               <div>
+    //    {isLoggedIn ? (
+    //         <Link class="nav-link" to="/Profile">
+    //          <AccountCircleIcon sx={{ fontSize: 40 }} />
+    //          </Link>
+    //        ) : (
+    //         <Link class="nav-link" to="/login">
+    //            <AccountCircleIcon sx={{ fontSize: 40 }} />
+    //          </Link>
+    //        )}
+    //      </div>
+    //       </Navbar.Collapse>
+    //     </Container>
+    //   </Navbar>
+    //   <hr />
+    // </div>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
+
 function Contacts({ data }) {
     console.log(data);
     return (
@@ -9,6 +10,8 @@ function Contacts({ data }) {
                     <th>שם פרטי</th>
                     <th> שם משפחה</th>
                     <th>מספר פלאפון</th>
+                 
+                  
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +20,7 @@ function Contacts({ data }) {
                         <td>{item.firstName}</td>
                         <td>{item.LastName}</td>
                         <td>{item.number}</td>
+                        
                     </tr>
                 )}
             </tbody>

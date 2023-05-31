@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import Contacts from './Contacts';
+import FilterableCotactTable from './FilterableCotactTable';
 import Messages from './Messages';
 import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 
 function Profile({ user }) {
-console.log(user);
-  const [data, setData] = useState([])
- 
+  const [countacts, setCountacts] = useState([]);
+  const [key, setKey] = useState(0);
+  console.log(user);
+
+  // get all contacts
   useEffect(() => {
     const token = localStorage.getItem("token");
-    
-    fetch("http://localhost:5000/auth/Profile", {
+
+    fetch(`http://localhost:5000/auth/Profile`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
@@ -21,18 +23,15 @@ console.log(user);
       .then(response => response.json())
       .then(result => {
         console.log(result.body);
-        setData(result.body);
-        console.log(data);
-
+        setCountacts(result.body);
       })
       .catch(error => alert('error', error));
   }, []);
-  const [key, setKey] = useState(0);
 
   const renderComponent = () => {
     switch (key) {
       case 1:
-        return <Contacts data={data} />;
+        return <FilterableCotactTable countacts={countacts} />
       case 2:
         return <Messages />;
       case 3:
@@ -41,6 +40,7 @@ console.log(user);
         return null;
     }
   };
+
   // console.log(JSON.parse(storedData));
   return (
     <div style={{ backgroundColor: 'lightblue', display: 'flex' }}>
@@ -65,11 +65,6 @@ console.log(user);
         {renderComponent()}
       </div>
     </div>
-
-
-
-
   )
-
 }
 export default Profile

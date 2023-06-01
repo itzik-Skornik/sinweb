@@ -20,21 +20,17 @@ export default function FilterableCotactTable({ countacts }) {
 
 function SearchBar({ filterText, setFilterText, }) {
     return (
-        <form>
-            <input
-                type="text"
-                value={filterText} placeholder="חיפוש אנשים ..."
-                onChange={(e) => setFilterText(e.target.value)} />
-        </form>
+        <input
+            type="text"
+            value={filterText} placeholder="חיפוש אנשים ..."
+            onChange={(e) => setFilterText(e.target.value)} />
     );
 }
 
 function ContactsTable({ countacts, filterText }) {
-
-
-
+    let filtered = countacts.filter((c) => c.firstName.includes(filterText) || c.LastName.includes(filterText))
+    
     return (<Table striped bordered hover variant="dark" >
-
         <thead>
             <tr>
                 <th>firstName</th>
@@ -42,10 +38,7 @@ function ContactsTable({ countacts, filterText }) {
                 <th>number</th>
             </tr>
         </thead>
-        <tbody>{countacts && countacts.length &&
-            countacts.filter((c) => c.firstName.includes(filterText) || c.LastName.includes(filterText))
-                .map(c => <ContactRow contact={c} />)}
-        </tbody>
+        <tbody>{filtered.map(c => <ContactRow contact={c} />)} </tbody>
     </Table>
 
 

@@ -73,7 +73,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Container from 'react-bootstrap/Container';
-function Navbars({ isLoggedIn, logOut,user }) {
+function Navbars({ isLoggedIn, logOut, user }) {
   const navigate = useNavigate();
   return (
 
@@ -141,21 +141,11 @@ function Navbars({ isLoggedIn, logOut,user }) {
             </NavDropdown>
             {isLoggedIn && <Nav.Link onClick={() => logOut(false)}>יציאה</Nav.Link>}
           </Nav>
-          {isLoggedIn ? (
-  user.manger ? (
-    <Link class="nav-link" to="/manger">
-      <AccountCircleIcon sx={{ fontSize: 40 }} />
-    </Link>
-  ) : (
-    <Link class="nav-link" to="/Profile">
-      <AccountCircleIcon sx={{ fontSize: 40 }} />
-    </Link>
-  )
-) : (
-  <Link class="nav-link" to="/login">
-    <AccountCircleIcon sx={{ fontSize: 40 }} />
-  </Link>
-)}
+
+          <Link class="nav-link" to={isLoggedIn ? user.mnager ? "/manger" : "/profile" : "/login"}>
+            <AccountCircleIcon sx={{ fontSize: 40 }} />
+          </Link>
+
           {/* {isLoggedIn ? (
             <Link class="nav-link" to="/Profile">
               <AccountCircleIcon sx={{ fontSize: 40 }} />

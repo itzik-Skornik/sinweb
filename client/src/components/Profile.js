@@ -4,7 +4,7 @@ import Messages from './Messages';
 import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
-
+import MessageIcon from '@mui/icons-material/Message';
 function Profile({ user }) {
   const [countacts, setCountacts] = useState([]);
   const [key, setKey] = useState(0);
@@ -58,6 +58,12 @@ function Profile({ user }) {
               <LocalPostOfficeIcon />
             </ListItemIcon>
             <ListItemText primary=" הודעה לגבאים" />
+          </ListItem>
+          <ListItem button onClick={() => setKey(3)}>
+            <ListItemIcon>
+              <MessageIcon />
+            </ListItemIcon>
+            <ListItemText primary=" הודעה מהגבאים" />
           </ListItem>
         </List>
       </div>

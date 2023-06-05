@@ -1,41 +1,49 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import FilterableCotactTable from './FilterableCotactTable';
 import Messages from './Messages';
 import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import MessageIcon from '@mui/icons-material/Message';
-function Profile({ user }) {
+import YourMassge from './yourMassge';
+import { userContext } from '../App';
+import axios from 'axios';
+
+function Profile() {
+  
+  const { user, bage, setBage,ProfileKey,setProfileKey } = useContext(userContext)
+
   const [countacts, setCountacts] = useState([]);
-  const [key, setKey] = useState(0);
+
   console.log(user);
 
   // get all contacts
   useEffect(() => {
     const token = localStorage.getItem("token");
-
-    fetch(`http://localhost:5000/auth/Profile`, {
+  
+    axios.get('http://localhost:5000/auth/Profile', {
       headers: {
-        "Content-Type": "application/json",
         "Authorization": "Bearer " + token
       }
     })
-      .then(response => response.json())
-      .then(result => {
-        console.log(result.body);
-        setCountacts(result.body);
+      .then(response => {
+        setCountacts(response.data);
       })
-      .catch(error => alert('error', error));
+      .catch(error => {
+        console.error(error);
+        alert('Error');
+      });
   }, []);
+  
 
   const renderComponent = () => {
-    switch (key) {
+    switch (ProfileKey) {
       case 1:
         return <FilterableCotactTable countacts={countacts} />
       case 2:
         return <Messages />;
       case 3:
-        return;
+        return <YourMassge id={user.id} />;
       default:
         return null;
     }
@@ -47,19 +55,19 @@ function Profile({ user }) {
       <div style={{ width: '200px' }}>
         <h3 style={{ textAlign: 'center' }}>שלום לך {user.firstName}</h3>
         <List>
-          <ListItem button onClick={() => setKey(1)}>
+          <ListItem button onClick={() => setProfileKey(1)}>
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
             <ListItemText primary="אנשי קשר" />
           </ListItem>
-          <ListItem button onClick={() => setKey(2)}>
+          <ListItem button onClick={() => setProfileKey(2)}>
             <ListItemIcon>
               <LocalPostOfficeIcon />
             </ListItemIcon>
             <ListItemText primary=" הודעה לגבאים" />
           </ListItem>
-          <ListItem button onClick={() => setKey(3)}>
+          <ListItem button onClick={() => setProfileKey(3)}>
             <ListItemIcon>
               <MessageIcon />
             </ListItemIcon>

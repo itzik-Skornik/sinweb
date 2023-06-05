@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Table from 'react-bootstrap/Table';
 export default function FilterableCotactTable({ countacts }) {
+    console.log(countacts);
     const [filterText, setFilterText] = useState([]);
 
     return (
@@ -16,8 +17,6 @@ export default function FilterableCotactTable({ countacts }) {
         </div>
     );
 }
-
-
 function SearchBar({ filterText, setFilterText, }) {
     return (
         <input
@@ -29,7 +28,7 @@ function SearchBar({ filterText, setFilterText, }) {
 
 function ContactsTable({ countacts, filterText }) {
     let filtered = countacts.filter((c) => c.firstName.includes(filterText) || c.LastName.includes(filterText))
-    
+
     return (<Table striped bordered hover variant="dark" >
         <thead>
             <tr>

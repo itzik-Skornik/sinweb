@@ -34,7 +34,7 @@ function MyMassge() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '400px' }}>
-                <TextField {...register('id')} label="מספר אישי" variant="outlined"
+                <TextField {...register('id')} label="מספר הודעה" variant="outlined"
                     fullWidth
                     style={{ marginBottom: '10px' }} />
                    

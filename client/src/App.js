@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import About from './components/About';
 import Protected from "./components/Protected";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import Login from './components/login1';
 import SingUp from './components/singUp';
 import CarouselFadeExample from './components/carousel';
@@ -20,19 +20,37 @@ import Messages from './components/Messages';
 import Updates from './components/Updates';
 import Manger from './components/manger';
 import Community_list from './components/Community_list';
+import axios from 'axios';
+import YourMassge from './components/yourMassge';
 
+export const userContext = createContext([])
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.token);
+  const [bage, setBage] = useState("");
+  const [arr, setArr] = useState([]);
+  const [ProfileKey, setProfileKey] = useState(0);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("serverData")));
-
   // console.log(JSON.parse(localStorage.serverData));
-  console.log(user);
   const [emailInpotLogin, setEmailInpotLogin] = useState();
   useEffect(() => {
-    setIsLoggedIn(localStorage.token)
+    if(user){
+      
+      axios.get(`http://localhost:5000/auth/app/${user.id}`)
+        .then(response => {
+          setBage(response.data.body); 
+          console.log(response.data.body);
+        })
+        .catch(error => {
+          console.error(error);
+          alert('Error');
+        });
+    }
+    setIsLoggedIn(localStorage.token);
   }, []);
 
+
+  console.log(bage);
   const handleLogout = () => {
     localStorage.clear()
     setIsLoggedIn(false);
@@ -72,34 +90,47 @@ function App() {
     // setIsloggedIn(res);
   };
   return (
-    <BrowserRouter>
+    <div>
+      <userContext.Provider
+        value={{
+          user,
+          bage,
+          setBage,
+          isLoggedIn,
+          ProfileKey,
+           setProfileKey
 
-      <Navbars isLoggedIn={isLoggedIn} logOut={handleLogout} user={user} />
+        }}
+      >
+        <BrowserRouter>
+          <Navbars isLoggedIn={isLoggedIn} logOut={handleLogout} user={user} arr={arr} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {/* <Route path="/login1" element={<Login logIn={logIn} />} ></Route> */}
+            <Route path="/login" element={<SignIn handleLogin={handleLogin} />} />
+            <Route path="/singUp" element={<SingUp />} />
+            <Route path="/profile" element={<Protected isLoggedIn={isLoggedIn} >
+              <Profile user={user} />
+           
+            </Protected>} />
+            <Route path="/about" element={<About />} />
+            <Route path="/carousel" element={< CarouselFadeExample />} />
+            <Route path="/tabla" element={< Tabla />} />
+            <Route path="/yomcol" element={<Yomcol />} />
+            <Route path="/contact" element={<Contact />} />
+           
+            <Route path="/Manger" element={<Manger user={user} />} />
+            <Route path="/Messages" element={<Messages />} />
+            <Route path="/Updates" element={<Updates />} >
+              <Route path="ab" element={<h2>ghjkfghj</h2>} />
+            </Route >
+            <Route path="/Donations" element={<Donations user={user} />} />
+            <Route path="/newCode" element={<StickyFooter email={emailInpotLogin} />} />
+          </Routes>
+        </BrowserRouter>
+      </userContext.Provider>
+    </div>
 
-      <Routes>
-
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/login1" element={<Login logIn={logIn} />} ></Route> */}
-        <Route path="/login" element={<SignIn handleLogin={handleLogin} />} />
-        <Route path="/singUp" element={<SingUp />} />
-        <Route path="/profile" element={<Protected isLoggedIn={isLoggedIn}>
-          <Profile user={user}/>
-        </Protected>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/carousel" element={< CarouselFadeExample />} />
-        <Route path="/tabla" element={< Tabla />} />
-        <Route path="/yomcol" element={<Yomcol />} />
-        <Route path="/contact" element={<Contact />} />
-        
-        <Route path="/Manger" element={<Manger user={user} />}/>
-        <Route path="/Messages" element={<Messages />} />
-        <Route path="/Updates" element={<Updates />} >
-          <Route path="ab" element={<h2>ghjkfghj</h2>} />
-        </Route >
-        <Route path="/Donations" element={<Donations user={user} />} />
-        <Route path="/newCode" element={<StickyFooter email={emailInpotLogin} />} />
-      </Routes>
-    </BrowserRouter>
   )
 }
 

@@ -11,7 +11,7 @@ function Updates() {
         <div>
             <Grid container justifyContent="center" spacing={2}>
                 <Grid item>
-                    <Button variant="contained" color="primary" onClick={()=>navigate("ab")}>שמחות </Button>
+                    <Button variant="contained" color="primary" onClick={()=>navigate("MazelTov")}>שמחות </Button>
                 </Grid>
                 <Grid item>
                     <Button variant="contained" color="secondary">עידכונים </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,17 +14,17 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
-
-
+import { userContext } from '../App';
+import axios from 'axios';
 const theme = createTheme();
 
 export default function SignIn({ handleLogin }) {
   const [email, setEmail] = useState();
   const navigate = useNavigate();
-
+  const {  bage, setBage,user } = useContext(userContext)
   const handleSubmit = (event) => {
     event.preventDefault();
-
+console.log(user);
     const data = new FormData(event.currentTarget);
     setEmail(data.get('email'))
 
@@ -51,11 +51,20 @@ export default function SignIn({ handleLogin }) {
         console.log(data);
         handleLogin(true, data.body, email);
         alert("הכניסה בוצעה בהצלחה")
-        if (data.body.mnager == "1") {
+        if (data.body.manager == "1") {
           console.log(data.body.mnager);
-          navigate("/manger")
+          navigate("/manager")
         }
         else {
+          axios.get(`http://localhost:5000/auth/app/${data.body.id}`)
+          .then(response => {
+            setBage(response.data.count); 
+       
+          })
+          .catch(error => {
+            console.error(error);
+            alert('Error');
+          });
           navigate("/profile ")
         }
 

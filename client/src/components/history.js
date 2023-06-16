@@ -2,14 +2,16 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Container, Paper, Typography } from '@mui/material';
 import { userContext } from '../App';
 
-function YourMassge({ id }) {
-  const { bage, setBage } = useContext(userContext)
+function History({ id }) {
+  
   console.log(id);
   const [getMassge, setGetMassge] = useState([])
+  const {  bage, setBage,user } = useContext(userContext)
+
   useEffect(() => {
 
 
-    fetch(`http://localhost:5000/auth/yourMassge/${id}`)
+    fetch(`http://localhost:5000/auth/history/${id}`)
       .then(response => response.json())
       .then(result => {
         console.log(result);
@@ -18,7 +20,7 @@ function YourMassge({ id }) {
           return;
         }
         setGetMassge(result.body);
-        setBage(0);
+        
       })
       .catch(error => alert('error', error));
   }, []);
@@ -55,4 +57,4 @@ function YourMassge({ id }) {
   )
 }
 
-export default YourMassge
+export default History

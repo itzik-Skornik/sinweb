@@ -9,8 +9,16 @@ router.get("/app/:id", (req, res) => {
         console.log(results, "8585858585");
         const filteredResults = results.filter(chat => chat.myMassge);
         console.log(filteredResults);
+        let count = 0;
         if (filteredResults[0]) {
-            res.status(200).json({ success: true, body: filteredResults });
+            for (let i = 0; i < filteredResults.length; i++) {
+                if(filteredResults[i].is_read==0){
+                    count++;
+                }
+             
+
+            }
+            res.status(200).json({ success: true, body: filteredResults,count});
         } else {
             res.status(400).json({ msg: "אין הודעות מהגבאי" });
         }

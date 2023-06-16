@@ -8,7 +8,8 @@ import MessageIcon from '@mui/icons-material/Message';
 import YourMassge from './yourMassge';
 import { userContext } from '../App';
 import axios from 'axios';
-
+import History from './history';
+import HistoryIcon from '@mui/icons-material/History';
 function Profile() {
   
   const { user, bage, setBage,ProfileKey,setProfileKey } = useContext(userContext)
@@ -30,7 +31,6 @@ function Profile() {
         setCountacts(response.data);
       })
       .catch(error => {
-        console.error(error);
         alert('Error');
       });
   }, []);
@@ -44,6 +44,8 @@ function Profile() {
         return <Messages />;
       case 3:
         return <YourMassge id={user.id} />;
+        case 4:
+        return <History id={user.id}  />;
       default:
         return null;
     }
@@ -72,6 +74,12 @@ function Profile() {
               <MessageIcon />
             </ListItemIcon>
             <ListItemText primary=" הודעה מהגבאים" />
+          </ListItem>
+          <ListItem button onClick={() => setProfileKey(4)}>
+            <ListItemIcon>
+              <HistoryIcon />
+            </ListItemIcon>
+            <ListItemText primary=" היסטוריה הודעות" />
           </ListItem>
         </List>
       </div>

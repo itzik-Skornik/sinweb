@@ -78,8 +78,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import { userContext } from '../App';
 
 function Navbars({ isLoggedIn, logOut }) {
-  const { bage, setBage, user,setProfileKey} = useContext(userContext)
+  const { bage, setBage, user, setProfileKey } = useContext(userContext)
   const navigate = useNavigate();
+
   return (
 
     // <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#ffffb3", height: "100px" }}>
@@ -124,53 +125,53 @@ function Navbars({ isLoggedIn, logOut }) {
     // </div>
     // 
     <Navbar bg="light" expand="lg" sticky="top">
-  <Container style={{ backgroundColor: "#ffffb3" }}>
-    <Navbar.Brand className="d-flex align-items-center" style={{ justifyContent: 'center', flex: 'auto' }}>
-      <img src="logo.jpg" width={'100px'} height={'50px'} />
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
-      <Nav>
-        <Link class="nav-link" to="/">דף הבית</Link>
-        <Link class="nav-link" to="/About">אודות</Link>
-        <NavDropdown title="גלריית תמונות" id="basic-nav-dropdown">
-          <Link class="nav-link" to="#action/3.1">הבית הכנסת</Link>
-          <Link class="nav-link" to="#action/3.2">שמחת בית השואבה</Link>
-          <Link class="nav-link" to="/carousel">ערב התאספות בבית המדרש</Link>
-        </NavDropdown>
+      <Container style={{ backgroundColor: "#ffffb3" }}>
+        <Navbar.Brand className="d-flex align-items-center" style={{ justifyContent: 'center', flex: 'auto' }}>
+          <img src="/logo.jpg" width={'100px'} height={'50px'} />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+          <Nav>
+            <Link class="nav-link" to="/">דף הבית</Link>
+            <Link class="nav-link" to="/About">אודות</Link>
+            <NavDropdown title="גלריית תמונות" id="basic-nav-dropdown">
+              <Link class="nav-link" to="#action/3.1">הבית הכנסת</Link>
+              <Link class="nav-link" to="#action/3.2">שמחת בית השואבה</Link>
+              <Link class="nav-link" to="/carousel">ערב התאספות בבית המדרש</Link>
+            </NavDropdown>
 
-        <Link class="nav-link" to="/Updates">שמחות ועידכונים</Link>
-        <Link class="nav-link" to="/Donations">תרומות ונדבות </Link>
-        <Link class="nav-link" to="/Contact">יצירת קשר</Link>
-        {/* <Link class="nav-link" to="/singup">הרשמה</Link> */}
-        <NavDropdown title="זמני תפילות" id="basic-nav-dropdown">
-          <Link class="nav-link" to="/yomcol">זמני תפילות חול</Link>
-          <Link class="nav-link" to="/tabla">זמני תפילות שבתות ומעודים</Link>
-        </NavDropdown>
-      </Nav>
+            <Link class="nav-link" to="/Updates">שמחות ועידכונים</Link>
+            <Link class="nav-link" to="/Donations">תרומות ונדבות </Link>
+            <Link class="nav-link" to="/Contact">יצירת קשר</Link>
+            {/* <Link class="nav-link" to="/singup">הרשמה</Link> */}
+            <NavDropdown title="זמני תפילות" id="basic-nav-dropdown">
+              <Link class="nav-link" to="/yomcol">זמני תפילות חול</Link>
+              <Link class="nav-link" to="/tabla">זמני תפילות שבתות ומעודים</Link>
+            </NavDropdown>
+          </Nav>
 
-    {isLoggedIn && <Nav.Link onClick={() => logOut(false)}>יציאה</Nav.Link>}
-    </Navbar.Collapse>
-      {isLoggedIn && (
-        <Badge  anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }} badgeContent={bage.length} color="primary">
-         <div onClick={() => { setProfileKey(3);navigate("/profile")}}>
+          {isLoggedIn && <Nav.Link onClick={() => logOut(false)}>יציאה</Nav.Link>}
+        </Navbar.Collapse>
+        {isLoggedIn && (
+          <Badge anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }} badgeContent={bage} color="primary">
+            <div onClick={() => { setProfileKey(3); navigate("/profile") }}>
 
-          <MailIcon color="action" />
-         </div>
-          
-        </Badge>
-      )}
+              <MailIcon color="action" />
+            </div>
 
-      <Nav>
-        <Link class="nav-link" onClick={()=>setProfileKey(0)} to={isLoggedIn ? (user.manager ? "/manager" : "/profile") : "/login"} style={{ display: "flex", alignItems: "center" }}>
-          <AccountCircleIcon sx={{ fontSize: 40 }} style={{ marginRight: "8px" }} />
-        </Link>
-      </Nav>
-  </Container>
-</Navbar>
+          </Badge>
+        )}
+
+        <Nav>
+          <Link class="nav-link" onClick={() => setProfileKey(0)} to={isLoggedIn ? (user.manager ? "/manager" : "/profile") : "/login"} style={{ display: "flex", alignItems: "center" }}>
+            <AccountCircleIcon sx={{ fontSize: 40 }} style={{ marginRight: "8px" }} />
+          </Link>
+        </Nav>
+      </Container>
+    </Navbar>
 
 
 

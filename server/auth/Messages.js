@@ -5,8 +5,8 @@ const nodemailer = require("nodemailer");
 
 router.post("/Messages", (req, res) => {
     const { email, Messages } = req.body
-
     console.log(email, Messages, "svhhhhhhhhhhhj");
+    console.log(date);
     if (email && Messages) {
         connection.query("SELECT * FROM users_new WHERE email = ?", [email], (err, results) => {
             console.log(results, "dkhsdfj");
@@ -22,9 +22,9 @@ router.post("/Messages", (req, res) => {
                         pass: process.env.PASS,
                     },
                 });
-
-
-                connection.query("INSERT INTO `test`.`messages`(`userId`,`frenMassge`)VALUES(?,?)", [results[0].id, Messages], (err, results2) => {
+              
+                connection.query("INSERT INTO `test`.`messages`(`userId`,`frenMassge`,`dayMassge`)VALUES(?,?,CURDATE())", [results[0].id, Messages], (err, results2) => {
+                    
                     if (err) return console.log(err);
                     console.log("results2: ", results2.insertId);
                     res.status(200).json({ success: true, msg: "ההודעה נשלחה" });

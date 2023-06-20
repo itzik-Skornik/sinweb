@@ -11,11 +11,11 @@ router.post("/Community_list", (req, res) => {
     if ( email) {
         connection.query("SELECT * FROM users_new WHERE email = ?", [email], (err, results) => {
             console.log(results, "איציק");
-          if (results.length >0 && results[0].mnager == 1) {
-                console.log(results.length >0 && results[0].mnager == 1);
-                connection.query("SELECT email,LastName,firstName, address, number FROM users_new",(err,user)=>{
-console.log(user,"שימי");
-                    res.status(200).json({ success: true, body: user });
+          if (results.length>0 && results[0].manager == 1) {
+             
+                connection.query("SELECT email,LastName,firstName, address, number FROM users_new",(err,results)=>{
+console.log(results,"שימי");
+                    res.status(200).json({ success: true, body: results });
                 })
             } else {
 

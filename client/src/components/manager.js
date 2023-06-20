@@ -8,6 +8,7 @@ import MyMassge from './myMassge';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { Link } from 'react-router-dom';
 import MazelTov from './MazelTov';
+import To_bring_in_joys from './to_bring_in_joys';
 function Manager({ user }) {
   const [key, setKey] = useState(0);
 
@@ -22,7 +23,7 @@ function Manager({ user }) {
       case 2:
         return <MyMassge />;
       case 3:
-        return      
+        return  <To_bring_in_joys />    
         default:
         return null;
     }
@@ -55,7 +56,7 @@ function Manager({ user }) {
             <ListItemIcon>
               <MessageIcon />
             </ListItemIcon>
-            <ListItemText primary=" שינויים " />
+            <ListItemText primary=" עידכוני שמחות " />
           </ListItem>
         </List>
       </div>

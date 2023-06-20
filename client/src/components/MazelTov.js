@@ -37,46 +37,56 @@ function MazelTov() {
 
     return (
         <>
-            {josyArr.length>0 && <div style={{ border: `10px solid ${color}` }}>
-                {josyArr.map((item, index) => (
-                    <Card key={index} sx={{ marginTop: 2, margin: 3, padding: 3, textAlign: 'center' }}>
-                        <CardContent>
-                            <Typography variant="h6" component="div">
-                                מזל טוב למשפחת {item.family}
-                            </Typography>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
-                                <Typography variant="body1">
-                                    {item.type === 'ברמצווה' ? (
-                                        <>
-                                            על הכנסם בנם בעול תורה ומצוות שתזכו להמשיך לגדלו לתורה חופה ומעשים טובים ולרוות נחת ממנו ומכל יוצאי חלציכם
-                                        </>
-                                    ) : item.cilde === 'בן' ? (
-                                        <>
-                                            להולדת הבן יהי רצון שתזכו לגדלו לתורה ולחופה ומעשים טובים ותרוו נחת ממנו ומכל יוצאי חליצכם
-                                        </>
-                                    ) : (
-                                        <>
-                                            להולדת הבת שתזכו לגדלה לתורה ולחפה ומעשים טובים ותרוו נחת ממנה ומכל יוצאי חליצכם
-                                        </>
-                                    )}
+            {josyArr.length > 0 &&
+                <div style={{ border: `10px solid ${color}` }}>
+                    {josyArr.map((item, index) => (
+                        <Card key={index} sx={{ marginTop: 2, margin: 3, padding: 3, textAlign: 'center' }}>
+                            <CardContent>
+                                <Typography variant="h6" component="div">
+                                    מזל טוב למשפחת {item.family}
                                 </Typography>
-                            </Box>
-                        </CardContent>
-                        <Typography variant="body1">
-                            בברכת מזל טוב מהגבאים וכל חברי הקהילה
-                        </Typography>
-                    </Card>
-                ))}
-
-
-
-
-
-
-
-
-
-            </div>}</>
+                                <Box sx={{ textAlign: 'center' }}>
+                                    <Typography variant="body1">
+                                        {item.type === "ברמצווה" ? (
+                                            <>
+                                                על הכנסם בנם בעול תורה ומצוות שתזכו להמשיך לגדלו לתורה חופה ומעשים טובים ולרוות נחת ממנו ומכל יוצאי חלציכם
+                                            </>
+                                        ) : item.type === "הולדה" ? (
+                                            <>
+                                                {item.cilde === "בן" ? (
+                                                    <>להולדת הבן יהי רצון שתזכו לגדלו לתורה ולחופה ומעשים טובים ותרוו נחת ממנו ומכל יוצאי חליצכם</>
+                                                ) : (
+                                                    <>להולדת הבת שתזכו לגדלה לתורה ולחפה ומעשים טובים ותרוו נחת ממנה ומכל יוצאי חליצכם</>
+                                                )}
+                                            </>
+                                        ) : item.type === "אירוסין" ? (
+                                            <>
+                                                {item.cilde === "בן" ? (
+                                                    <>לרגל אירוסי בנם שתזכו להכניסו לחופה ולמעשים טובים ולראות נחת מהזוג הטרי</>
+                                                ) : (
+                                                    <>לרגל אירוסי בתם בשעה טובה ומוצלחת שתזכו להכניסה לחופה ולמעשים טובים ולראות נחת מהזוג הטרי</>
+                                                )}
+                                            </>
+                                        ) : item.type === "חתונה" ? (
+                                            <>
+                                                {item.cilde === "בן" ? (
+                                                    <>לרגל הכנסם בנם לחופה שיזכו לבנות בית נאמן בישראל ולראות נחת מהזוג הטרי</>
+                                                ) : (
+                                                    <>לרגל הכנסם בתם בשעה טובה ומוצלחת לחופה שיזכו לבנות בית נאמן בישראל ולראות נחת מהזוג הטרי</>
+                                                )}
+                                            </>
+                                        ): <></>}
+                                    </Typography>
+                                </Box>
+                            </CardContent>
+                            <Typography variant="body1" sx={{ textAlign: 'center' }}>
+                                בברכת מזל טוב מהגבאים וכל חברי הקהילה
+                            </Typography>
+                        </Card>
+                    ))}
+                </div>
+            }
+        </>
 
     )
 }

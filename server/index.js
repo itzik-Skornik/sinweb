@@ -21,6 +21,7 @@ const yourMassgeRouter = require("./auth/yourMassge");
 const historyRouter = require("./auth/history");
 const appRouter = require("./auth/app");
 const MazelTovRouter = require("./auth/MazelTov");
+const to_bring_in_joysRouter = require("./auth/to_bring_in_joys");
 const Community_list_Router = require("./auth/Community_list");
 app.use("/auth", LoginRouter)
 app.use("/auth", SignUpRouter)
@@ -32,5 +33,6 @@ app.use("/auth", Community_list_Router)
 app.use("/auth", appRouter)
 app.use("/auth", historyRouter)
 app.use("/auth", MazelTovRouter)
+app.use("/auth", to_bring_in_joysRouter)
 app.use("/auth", checkout, profileRouter)
 app.listen(5000);

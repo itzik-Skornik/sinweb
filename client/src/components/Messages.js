@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { TextField, Button } from '@mui/material';
+import { userContext } from '../App';
 function Messages() {
 
     const { register, handleSubmit, reset } = useForm();
-
+    const { user } = useContext(userContext)
     const onSubmit = (data) => {
-        const { email, Messages } = data
-        console.log(email, Messages);
-
-        let body = JSON.stringify({ email, Messages });
+        console.log(data);
+        const {  Messages } = data
+        console.log(user.email, Messages);
+const email = user.email;
+        let body = JSON.stringify( {email, Messages });
         console.log(body);
         let requestOptions = {
             method: 'POST',
@@ -33,10 +35,8 @@ function Messages() {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '400px' }}>
-                <TextField {...register('email')} label="כתובת דואר אלקטרוני" variant="outlined"
-                    fullWidth
-                    style={{ marginBottom: '10px' }} />
+            <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '400px',marginTop:"50px" }}>
+                
                 <TextField {...register('Messages')} label="הודעה" variant="outlined"
                     multiline
                     rows={4}

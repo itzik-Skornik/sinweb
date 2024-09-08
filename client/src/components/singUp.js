@@ -206,9 +206,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="login" variant="body2">
-                  יש לך כבר חשבון? כניסה
-                </Link>
+              <a href="login">יש לך כבר חשבון? כניסה</a>
               </Grid>
             </Grid>
           </Box>

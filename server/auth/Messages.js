@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 router.post("/Messages", (req, res) => {
     const { email, Messages } = req.body
     console.log(email, Messages, "svhhhhhhhhhhhj");
-    console.log(date);
+   
     if (email && Messages) {
         connection.query("SELECT * FROM users_new WHERE email = ?", [email], (err, results) => {
             console.log(results, "dkhsdfj");

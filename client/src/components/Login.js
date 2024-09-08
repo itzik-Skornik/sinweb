@@ -130,7 +130,7 @@ console.log(user);
             <Grid container>
               <Grid item xs>
                 <Link href="/newCode" variant="body2">
-                  שכחתה את הסיסמא?
+                  שכחת את הסיסמא?
                 </Link>
               </Grid>
               <Grid item>

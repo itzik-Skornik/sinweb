@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch index.js",
+    "start": "nodemon --watch index.js",
     "dev": "nodemon index.js"
   },
+
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

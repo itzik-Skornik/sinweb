@@ -23,6 +23,8 @@ import Community_list from './components/Community_list';
 import axios from 'axios';
 import YourMassge from './components/yourMassge';
 import MazelTov from './components/MazelTov';
+import UpdatesDisplay from './components/UpdatesDisplay';
+import UpdatesHistory from './UpdatesHistory';
 
 export const userContext = createContext([])
 
@@ -136,11 +138,14 @@ function App() {
 
             <Route path="/manager" element={<Manager user={user} />} />
             <Route path="/Messages" element={<Messages />} />
-            <Route path="/Updates" element={<Updates />} >
-              <Route path="MazelTov" element={<MazelTov /> }/>
-            </Route >
+            <Route path="/Updates" element={<Updates />}>
+    <Route path="UpdatesDisplay" element={<UpdatesDisplay />} />
+    <Route path="UpdatesHistory" element={<UpdatesHistory />} /> 
+    <Route path="MazelTov" element={<MazelTov />} />
+  </Route>
             <Route path="/Donations" element={<Donations user={user} />} />
             <Route path="/newCode" element={<StickyFooter email={emailInpotLogin} />} />
+            
           </Routes>
         </BrowserRouter>
       </userContext.Provider>

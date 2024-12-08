@@ -30,7 +30,7 @@ export default function To_bring_in_joys() {
       cilde: data.get('cilde'),
     });
 
-    console.log( body,"ghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+   
     let requestOptions = {
       method: 'POST',
       headers: { "Content-Type": "application/json" },

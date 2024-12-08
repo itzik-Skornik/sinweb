@@ -32,9 +32,9 @@ function ContactsTable({ countacts, filterText }) {
     return (<Table striped bordered hover variant="dark" >
         <thead>
             <tr>
-                <th>firstName</th>
-                <th>LastName</th>
-                <th>number</th>
+                <th>שם פרטי</th>
+                <th>שם משפחה</th>
+                <th>פלאפון</th>
             </tr>
         </thead>
         <tbody>{filtered.map(c => <ContactRow contact={c} />)} </tbody>

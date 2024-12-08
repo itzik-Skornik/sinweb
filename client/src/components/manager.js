@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import UpdateIcon from '@mui/icons-material/Update';
 import Community_list from './Community_list';
 import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -9,6 +10,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { Link } from 'react-router-dom';
 import MazelTov from './MazelTov';
 import To_bring_in_joys from './to_bring_in_joys';
+import AddUpdate from './AddUpdate';
 function Manager({ user }) {
   const [key, setKey] = useState(0);
 
@@ -23,7 +25,9 @@ function Manager({ user }) {
       case 2:
         return <MyMassge />;
       case 3:
-        return  <To_bring_in_joys />    
+        return  <To_bring_in_joys />  
+        case 4:
+        return  <AddUpdate />    
         default:
         return null;
     }
@@ -31,6 +35,7 @@ function Manager({ user }) {
   return (
     <div style={{ backgroundColor: 'lightblue', display: 'flex' }}>
       <div style={{ width: '200px' }}>
+        <h2 style={{backgroundColor: 'red', textAlign: 'center'}}>מנהל</h2>
         {/* <h3 style={{ textAlign: 'center' }}>שלום לך {user.firstName}</h3> */}
         <List>
           <ListItem button onClick={() => setKey(1)}>
@@ -58,6 +63,12 @@ function Manager({ user }) {
             </ListItemIcon>
             <ListItemText primary=" עידכוני שמחות " />
           </ListItem>
+          <ListItem button onClick={() => setKey(4)}>
+  <ListItemIcon>
+    <UpdateIcon />
+  </ListItemIcon>
+  <ListItemText primary=" עידכונים כלליים " />
+</ListItem>
         </List>
       </div>
       <div style={{ flex: 1 }}>

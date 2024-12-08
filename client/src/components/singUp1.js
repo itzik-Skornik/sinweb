@@ -28,9 +28,7 @@ function SingUp1({ }) {
 
     fetch("http://localhost:5000/auth/signup", requestOptions)
       .then(response => response.json())
-      .then(result => {
-
-      })
+      
 
 
       .catch(error => alert('error', error));

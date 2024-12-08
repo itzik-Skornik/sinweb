@@ -1,0 +1,11 @@
+.nav-link.active {
+    font-weight: bold;
+    color: #0056b3; /* צבע ההדגשה */
+    text-decoration: underline;
+}
+
+.dropdown-item.active {
+    font-weight: bold;
+    color: #0056b3;
+    text-decoration: underline;
+}

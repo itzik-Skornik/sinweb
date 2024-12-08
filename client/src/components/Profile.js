@@ -10,6 +10,8 @@ import { userContext } from '../App';
 import axios from 'axios';
 import History from './history';
 import HistoryIcon from '@mui/icons-material/History';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonalInfo from './PersonalInfo';
 function Profile() {
   
   const { user, bage, setBage,ProfileKey,setProfileKey } = useContext(userContext)
@@ -46,6 +48,8 @@ function Profile() {
         return <YourMassge id={user.id} />;
         case 4:
         return <History id={user.id}  />;
+        case 5:
+        return <PersonalInfo />;
       default:
         return null;
     }
@@ -55,7 +59,7 @@ function Profile() {
   return (
     <div style={{ backgroundColor: 'lightblue', display: 'flex' }}>
       <div style={{ width: '200px' }}>
-        <h3 style={{ textAlign: 'center' }}>שלום לך {user.firstName}</h3>
+        <h3 style={{ textAlign: 'center' ,backgroundColor:"red" }}>שלום לך {user.firstName}</h3>
         <List>
           <ListItem button onClick={() => setProfileKey(1)}>
             <ListItemIcon>
@@ -80,6 +84,12 @@ function Profile() {
               <HistoryIcon />
             </ListItemIcon>
             <ListItemText primary=" היסטוריה הודעות" />
+          </ListItem>
+          <ListItem button onClick={() => setProfileKey(5)}>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary=" הגדרות אישיות " />
           </ListItem>
         </List>
       </div>

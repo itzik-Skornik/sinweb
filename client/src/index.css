@@ -1,4 +1,11 @@
 body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPKh-vK1tELTCHwCaqYf0RQZ1MRWwfBOZb_w&s');
+  background-size: cover; /* מוודא שהתמונה תכסה את כל הדף */
+  background-position: center; /* ממרכז את התמונה */
+  background-repeat: no-repeat; /* מבטל חזרה של התמונה */
+  background-attachment: fixed; /* גורם לתמונה להישאר במקום בזמן גלילה */
+  height: 100vh; /* מוודא שהגובה יהיה לפחות בגובה הדף */
+ 
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +17,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.nav-link.active {
+  font-weight: bold;
+  color: #0056b3; /* צבע ההדגשה */
+  text-decoration: underline;
 }
